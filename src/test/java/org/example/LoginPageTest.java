@@ -1,7 +1,7 @@
 package org.example;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginPageTest {
-    private static WebDriver driver;
-    private static LoginPage loginPage;
+    private WebDriver driver;
+    private LoginPage loginPage;
     private HomeMainPage homeMainPage;
     private SignUpPage signUpPage;
     private final String VALID_EMAIL = ConfProperties.getProperty("email");
@@ -21,8 +21,8 @@ public class LoginPageTest {
     private final String NOT_EXIST_EMAIL = "87654321@mail.ru";
     private final String NOT_VALID_PASSWORD = "87654321";
 
-    @BeforeAll
-    public static void setup() {
+    @BeforeEach
+    public void setup() {
         //создание экземпляра драйвера
         driver = new ChromeDriver();
         loginPage = new LoginPage(driver);
@@ -95,8 +95,10 @@ public class LoginPageTest {
         boolean flag = errorText.contains("Please check your login");
         assertTrue(flag);
     }
-    @AfterAll
-    public static void tearDown() {
-        //driver.quit();
+
+    @AfterEach
+    public void tearDown() {
+        driver.quit();
+
     }
 }
