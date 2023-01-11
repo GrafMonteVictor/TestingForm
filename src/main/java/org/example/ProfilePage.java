@@ -14,16 +14,20 @@ public class ProfilePage {
     public void click(String locator) {
         driver.findElement(By.xpath(locator)).click();
     }
-    public HomeProfilePage clickHome() {
-        driver.findElement(homeButton).click();
-        return new HomeProfilePage(driver);
-    }
-    public ProfilePage clickProfile() {
-        driver.findElement(profileButton).click();
-        return new ProfilePage(driver);
-    }
     public HomeMainPage clickLogout() {
         driver.findElement(logoutButton).click();
         return new HomeMainPage(driver);
+    }
+
+    public ProfilePage clickProfile() {
+        driver.findElement(profileButton).click();
+        return this;
+    }
+    public HomeMainPage clickHome() {
+        driver.findElement(homeButton).click();
+        return new HomeMainPage(driver);
+    }
+    public String getURL() {
+        return driver.getCurrentUrl();
     }
 }

@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 public class HomeMainPage {
     private By loginButton = By.xpath("//a[@href='/login']");
     private By sighUpButton = By.xpath("//a[@href='/signup']");
+    private By homeButton = By.xpath("//a[@href='/']");
     private WebDriver driver;
     public HomeMainPage(WebDriver driver) {
         this.driver = driver;
@@ -15,10 +16,17 @@ public class HomeMainPage {
         driver.findElement(loginButton).click();
         return new LoginPage(driver);
     }
-    public SignUpPage clickSighUp() {
-        driver.findElement(loginButton).click();
+    public SignUpPage clickSignUp() {
+        driver.findElement(sighUpButton).click();
         return new SignUpPage(driver);
     }
+    public HomeMainPage clickHome() {
+        driver.findElement(homeButton).click();
+        return this;
+    }
 
+    public String getURL() {
+        return driver.getCurrentUrl();
+    }
 
 }
